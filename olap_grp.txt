@@ -1,0 +1,28 @@
+use Housing_Prices_Mum;
+
+SELECT c.CID, b.BID, t.year, p.PID, sum(FT.total_amount) as 'Total Amount'
+FROM Customer c, Broker b, Time t, Payment p, Fact_Table FT
+WHERE p.PID = FT.PID and t.TID = FT.TID and c.CID = FT.CID and b.BID = FT.BID
+GROUP BY c.CID, b.BID, t.year, p.PID ;
+
+SELECT c.CID, b.BID, t.year, p.PID, sum(FT.total_amount) as 'Total Amount'
+FROM Customer c, Broker b, Time t, Payment p, Fact_Table FT
+WHERE p.PID = FT.PID and t.TID = FT.TID and c.CID = FT.CID and b.BID = FT.BID
+and t.quarter = 4
+GROUP BY c.CID, b.BID, t.year, p.PID, t.quarter;
+
+SELECT c.CID, b.BID, t.year, p.PID, sum(FT.total_amount) as 'Total Amount',
+t.quarter
+FROM Customer c, Broker b, Time t, Payment p, Fact_Table FT
+WHERE p.PID = FT.PID and t.TID = FT.TID and c.CID = FT.CID and b.BID = FT.BID
+GROUP BY c.CID, b.BID, t.year, p.PID, t.quarter;
+
+SELECT t.year, sum(FT.total_amount) as 'Total Amount'
+FROM Fact_Table FT, Time t
+WHERE t.TID = FT.TID
+GROUP BY t.year;
+
+SELECT t.quarter, sum(FT.total_amount) as 'Total Amount'
+FROM Fact_Table FT, Time t
+WHERE t.TID = FT.TID
+GROUP BY t.quarter;

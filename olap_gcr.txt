@@ -1,0 +1,25 @@
+select p.product_name,  t.quarter, b.branchname, sum(s.total_sales) as 'total sales', sum(s.profit) as 'profit' 
+from product p, sales s, time t, branch b
+where p.product_id= s.prod_id and t.time_id = s.time_id and b.branchid = s.branch_id
+group by p.product_name, t.quarter, b.branchname
+
+
+select p.product_name, sum(s.total_sales) as 'total sales', t.quarter, b.branchname
+from product p, sales s, time t, branch b
+where p.product_id= s.prod_id and t.time_id = s.time_id and b.branchid = s.branch_id and quarter=2
+group by p.product_name, t.quarter, b.branchname
+
+select p.product_name, sum(s.total_sales) as 'total sales', t.quarter, b.branchname
+from product p, sales s, time t, branch b
+where p.product_id= s.prod_id and t.time_id = s.time_id and b.branchid = s.branch_id and quarter=2 and branch_id=1
+group by p.product_name, t.quarter, b.branchname
+
+select t.year, sum(s.total_sales) as 'total sales'
+from sales s, time t
+where t.time_id = s.time_id 
+group by t.year
+
+select t.month, sum(s.total_sales) as 'total sales'
+from sales s, time t
+where t.time_id = s.time_id 
+group by t.month
