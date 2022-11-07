@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   
+	int kloc;
+	float arr[4];
+	double organic_ai = 3.2;
+	double organic_bi = 1.05;
+	double organic_ci = 0.38;
+	double semi_detached_ai = 3.0;
+	double semi_detached_bi = 1.12;
+	double semi_detached_ci = 0.35;
+	double embedded_ai = 2.8;
+	double embedded_bi = 1.2;
+	double embedded_ci = 0.32;
+
+
+
+	cout<<"Enter Kloc"<<endl;
+	cin>>kloc;
+
+
+	cout<<"Enter cost drivers:"<<endl;
+	for(int i=0; i<4; i++)
+	{
+		cin>>arr[i];
+	}
+
+
+	double EAF = 1;
+	for(int i=0; i<4; i++)
+	{
+		if(arr[i]!=0)
+		{
+			EAF = EAF*arr[i];
+		}	
+	}
+
+
+	cout<<"The EAF of the software is "<<EAF<<endl;
+
+
+	double pow_org = pow(kloc, organic_bi);
+	double organic_Effort = organic_ai*(pow_org)*EAF;
+
+	double pow_semi = pow(kloc, semi_detached_bi);
+	double Semi_detached_Effort = semi_detached_ai*(pow_semi)*EAF;
+
+	double pow_emb = pow(kloc, embedded_bi);
+	double embedded_Effort = embedded_ai*(pow_emb)*EAF;
+
+
+	
+	float org_D = 2.5*(pow(organic_Effort, organic_ci));
+	float semi_D = 2.5*(pow(Semi_detached_Effort, semi_detached_ci));
+	float emb_D = 2.5*(pow(embedded_Effort, embedded_ci));
+
+	
+	double org_P = organic_Effort/org_D;
+	double semi_P = Semi_detached_Effort/semi_D;
+	double emb_P = embedded_Effort/emb_D;
+
+
+
+	cout<<"The organic Effort, Development Time and no. of person are: "<<organic_Effort<<", "<<org_D<<" and "<<org_P<<endl;
+	cout<<"The Semi-detached Effort, Development Time and no. of person are: "<<Semi_detached_Effort<<", "<<semi_D<<" and "<<semi_P<<endl;
+	cout<<"The Embedded Effort, Development Time and no. of person are: "<<embedded_Effort<<", "<<emb_D<<" and "<<emb_P<<endl;
+}
+
+
+
+
+output:
+
+Enter Kloc
+200
+
+Enter cost drivers:
+1.15
+0.91
+0.85
+1.00
+
+The EAF of the software is 0.889525
+The organic Effort, Development Time and no. of person are: 741.976, 30.8097 and 24.0825
+The Semi-detached Effort, Development Time and no. of person are: 1007.94, 28.1282 and 35.8337
+The Embedded Effort, Development Time and no. of person are: 1437.32, 25.6069 and 56.1301
+
+
+Effort (E) = a*(KLOC)b = 3.0*(300)1.12 = 1784.42 PM
+Development Time (D) = c(E)d = 2.5(1784.42)0.35 = 34.35 Months(M)
+Person Required (P) = E/D = 1784.42/34.35 = 51.9481 Persons ~52 Persons
