@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>//organic,basic
+using namespace std;
+int main()
+{//2.4,1.05,2.5,0.38÷3.0,1.12,2.5,0.35+3.6,1.20,2.5,0.32
+	int kloc;
+	double organic_ai = 3.2;
+	double organic_bi = 1.05;
+	double organic_di = 0.38;
+	double semi_detached_ai = 3.0;
+	double semi_detached_bi = 1.12;
+	double semi_detached_di = 0.35;
+	double embedded_ai = 2.8;
+	double embedded_bi = 1.2;
+	double embedded_di = 0.32;
+
+
+
+	cout<<"Enter Kloc"<<endl;
+	cin>>kloc;
+
+	
+	double pow_org = pow(kloc, organic_bi);
+	double organic_Effort = organic_ai*(pow_org);
+	double pow_semi = pow(kloc, semi_detached_bi);
+	double Semi_detached_Effort = semi_detached_ai*(pow_semi);
+	double pow_emb = pow(kloc, embedded_bi);
+	double embedded_Effort = embedded_ai*(pow_emb);
+
+
+	
+	float org_D = 2.5*(pow(organic_Effort, organic_di));
+	float semi_D = 2.5*(pow(Semi_detached_Effort, semi_detached_di));
+	float emb_D = 2.5*(pow(embedded_Effort, embedded_di));
+
+
+
+	
+	double org_P = organic_Effort/org_D;
+	double semi_P = Semi_detached_Effort/semi_D;
+	double emb_P = embedded_Effort/emb_D;
+	cout<<"The organic Effort, Development Time and no. of person are: "<<organic_Effort<<", "<<org_D<<" and "<<org_P<<endl;
+	cout<<"The Semi-detached Effort, Development Time and no. of person are: "<<Semi_detached_Effort<<", "<<semi_D<<" and "<<semi_P<<endl;
+	cout<<"The Embedded Effort, Development Time and no. of person are: "<<embedded_Effort<<", "<<emb_D<<" and "<<emb_P<<endl;
+
+}
+
+output:
+
+Enter Kloc
+200
+
+The organic Effort, Development Time and no. of person are: 834.126, 32.2113 and 25.8955
+The Semi-detached Effort, Development Time and no. of person are: 1133.12, 29.3046 and 38.6668
+The Embedded Effort, Development Time and no. of person are: 1615.82, 26.5844 and 60.781
